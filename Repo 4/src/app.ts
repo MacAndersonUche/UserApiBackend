@@ -5,19 +5,26 @@ import {
 	deleteUsersById,
 	updateUsersById,
 } from "./utils";
-import serverless from 'serverless-http';
+import serverless from "serverless-http";
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import path from "path";
 
 const app = express();
-
 const router = express.Router();
 
+app.use(cors());
+app.use("/.netlify/functions/app", router); // path must route to lambda
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+router.get("/", (req, res) => {
+	res.writeHead(200, { "Content-Type": "text/html" });
+	res.write("<h1>Up and running</h1>");
+	res.end();
+});
 router.get("/users", (req, res) => {
-	res.send(getAllUsers());
+	res.send("Hello World");
 });
 router.post("/users", (req, res) => {
 	const { name, age } = req.body;
@@ -35,11 +42,6 @@ router.get("/users/:id", (req, res) => {
 	const { id } = req.params;
 	res.send(getUsersById(id));
 });
-
-app.use(cors());
-app.use('/.netlify/functions/app', router);  // path must route to lambda
-app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 export { app };
 export const handler = serverless(app);
