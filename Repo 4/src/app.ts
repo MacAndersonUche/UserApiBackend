@@ -9,32 +9,37 @@ import serverless from 'serverless-http';
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import path from "path";
 
 const app = express();
 
-app.use(cors());
-app.use('/.netlify/functions/app')
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+const router = express.Router();
 
-app.get("/users", (req, res) => {
+
+router.get("/users", (req, res) => {
 	res.send(getAllUsers());
 });
-app.post("/users", (req, res) => {
+router.post("/users", (req, res) => {
 	const { name, age } = req.body;
 	res.send(createUser(name, age));
 });
-app.put("/users", (req, res) => {
+router.put("/users", (req, res) => {
 	const { id, name, age } = req.body;
 	res.send(updateUsersById(id, name, age));
 });
-app.delete("/users/:id", (req, res) => {
+router.delete("/users/:id", (req, res) => {
 	const { id } = req.params;
 	res.send(deleteUsersById(id));
 });
-app.get("/users/:id", (req, res) => {
+router.get("/users/:id", (req, res) => {
 	const { id } = req.params;
 	res.send(getUsersById(id));
 });
+
+app.use(cors());
+app.use('/.netlify/functions/app', router);  // path must route to lambda
+app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 export { app };
 export const handler = serverless(app);

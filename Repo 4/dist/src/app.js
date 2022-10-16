@@ -11,26 +11,27 @@ var body_parser_1 = __importDefault(require("body-parser"));
 var cors_1 = __importDefault(require("cors"));
 var app = (0, express_1.default)();
 exports.app = app;
-app.use((0, cors_1.default)());
-app.use('/.netlify/functions/app');
-app.use(body_parser_1.default.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.get("/users", function (req, res) {
+var router = express_1.default.Router();
+router.get("/users", function (req, res) {
     res.send((0, utils_1.getAllUsers)());
 });
-app.post("/users", function (req, res) {
+router.post("/users", function (req, res) {
     var _a = req.body, name = _a.name, age = _a.age;
     res.send((0, utils_1.createUser)(name, age));
 });
-app.put("/users", function (req, res) {
+router.put("/users", function (req, res) {
     var _a = req.body, id = _a.id, name = _a.name, age = _a.age;
     res.send((0, utils_1.updateUsersById)(id, name, age));
 });
-app.delete("/users/:id", function (req, res) {
+router.delete("/users/:id", function (req, res) {
     var id = req.params.id;
     res.send((0, utils_1.deleteUsersById)(id));
 });
-app.get("/users/:id", function (req, res) {
+router.get("/users/:id", function (req, res) {
     var id = req.params.id;
     res.send((0, utils_1.getUsersById)(id));
 });
+app.use((0, cors_1.default)());
+app.use('/.netlify/functions/app', router); // path must route to lambda
+app.use(body_parser_1.default.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 exports.handler = (0, serverless_http_1.default)(app);
