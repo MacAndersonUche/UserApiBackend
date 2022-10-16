@@ -12,7 +12,7 @@ var cors_1 = __importDefault(require("cors"));
 var app = (0, express_1.default)();
 exports.app = app;
 app.use((0, cors_1.default)());
-app.use('/.netlify/functions/server');
+app.use('/.netlify/functions/app');
 app.use(body_parser_1.default.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.get("/users", function (req, res) {
     res.send((0, utils_1.getAllUsers)());
