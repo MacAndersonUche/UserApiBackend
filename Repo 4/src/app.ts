@@ -13,7 +13,7 @@ import cors from "cors";
 const app = express();
 
 app.use(cors());
-app.use(serverless)
+app.use('/.netlify/functions/server')
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.get("/users", (req, res) => {
@@ -37,3 +37,4 @@ app.get("/users/:id", (req, res) => {
 });
 
 export { app };
+export const handler = serverless(app);
