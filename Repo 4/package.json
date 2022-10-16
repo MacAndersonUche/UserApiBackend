@@ -2,7 +2,7 @@
   "name": "Repo4",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "functions/app.js",
   "scripts": {
     "start": "node dist/index.js",
     "build": "rimraf dist && tsc && netlify-lambda build dist/src",
