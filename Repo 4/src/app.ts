@@ -29,6 +29,10 @@ router.post("/users", (req, res) => {
 	const { name, age } = req.body;
 	res.send(createUser(name, age));
 });
+router.post("/test", (req, res) => {
+	const { name, age } = req.body;
+	res.send({ name, age });
+});
 router.put("/users", (req, res) => {
 	const { id, name, age } = req.body;
 	res.send(updateUsersById(id, name, age));
@@ -40,6 +44,10 @@ router.delete("/users/:id", (req, res) => {
 router.get("/users/:id", (req, res) => {
 	const { id } = req.params;
 	res.send(getUsersById(id));
+});
+router.get("/test/:id", (req, res) => {
+	const { id } = req.params;
+	res.send({ id });
 });
 
 export { app };
