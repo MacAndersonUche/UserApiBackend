@@ -9,7 +9,6 @@ import serverless from "serverless-http";
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import path from "path";
 
 const app = express();
 const router = express.Router();
@@ -24,7 +23,7 @@ router.get("/", (req, res) => {
 	res.end();
 });
 router.get("/users", (req, res) => {
-	res.send("Hello World");
+	res.send(getAllUsers());
 });
 router.post("/users", (req, res) => {
 	const { name, age } = req.body;

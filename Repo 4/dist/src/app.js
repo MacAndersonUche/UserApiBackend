@@ -21,7 +21,7 @@ router.get("/", function (req, res) {
     res.end();
 });
 router.get("/users", function (req, res) {
-    res.send("Hello World");
+    res.send((0, utils_1.getAllUsers)());
 });
 router.post("/users", function (req, res) {
     var _a = req.body, name = _a.name, age = _a.age;
