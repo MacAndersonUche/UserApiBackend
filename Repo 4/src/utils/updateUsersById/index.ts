@@ -1,4 +1,4 @@
-import { usersArray } from "../../database/db";
+import { setUsersArray, usersArray } from "../../database/db";
 import { read, write } from "../../filesystem";
 import { User } from "../../types";
 
@@ -18,6 +18,7 @@ export default function updateUsersById(id: string, name: string, age: number): 
     if(foundUser) {
     usersFiltered.push(newUser);
     // write("src/database/db.json", usersFiltered);
+    setUsersArray(usersFiltered);
     return dataToReturn = true;
     }
     return dataToReturn = false;
