@@ -14,8 +14,8 @@ const app = express();
 const router = express.Router();
 
 app.use(cors());
-app.use("/.netlify/functions/app", router); // path must route to lambda
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use("/.netlify/functions/app", router); // path must route to lambda
 
 router.get("/", (req, res) => {
 	res.writeHead(200, { "Content-Type": "text/html" });
