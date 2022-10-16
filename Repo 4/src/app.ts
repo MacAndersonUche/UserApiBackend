@@ -13,7 +13,7 @@ import cors from "cors";
 const app = express();
 
 app.use(cors());
-app.use('/.netlify/functions/server')
+app.use('/.netlify/functions/app')
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.get("/users", (req, res) => {
