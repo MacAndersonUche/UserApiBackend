@@ -30,6 +30,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "workspaces": [
+    "Repo 1/*",
+    "Repo 4/**/*"
+  ],
   "devDependencies": {
     "@types/aws-lambda": "^8.10.106",
     "@types/cors": "^2.8.12",
