@@ -1,0 +1,12 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "dynamoclientstack"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-s5f1dyujr204"
+s3_prefix = "dynamoclientstack"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "DatabaseTableName=\"users\""
+image_repositories = []
