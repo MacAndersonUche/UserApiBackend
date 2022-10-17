@@ -3,7 +3,7 @@ import { User } from "../types";
 AWS.config.update({ region: "us-east-1" });
 const dynamo = new AWS.DynamoDB.DocumentClient();
 
-export const handler = async ({id, name, age}: User) => {
+export const createUsers = async ({id, name, age}: User) => {
 	const params = {
 		TableName: "users",
 		Item: {
