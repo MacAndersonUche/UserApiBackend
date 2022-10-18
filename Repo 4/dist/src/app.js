@@ -13,8 +13,8 @@ var app = (0, express_1.default)();
 exports.app = app;
 var router = express_1.default.Router();
 app.use((0, cors_1.default)());
-app.use("/.netlify/functions/app", router); // path must route to lambda
 app.use(body_parser_1.default.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use("/.netlify/functions/app", router); // path must route to lambda
 router.get("/", function (req, res) {
     res.writeHead(200, { "Content-Type": "text/html" });
     res.write("<h1>Up and running</h1>");

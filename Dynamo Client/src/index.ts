@@ -10,4 +10,11 @@ import { updateSingleUser } from "./updateSingleUser";
 // createUsers({ id: "2", name: "John", age: 20 });
 // getAllUsers();
 
-updateSingleUser("1", "Johnnny", 220);
+// updateSingleUser("1", "Johnnny", 220);
+
+
+
+export const lambdaHandler = async ()=> {
+    const users = await getAllUsers();
+    return users
+}

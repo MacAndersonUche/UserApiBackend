@@ -17,6 +17,7 @@ function updateUsersById(id, name, age) {
     if (foundUser) {
         usersFiltered.push(newUser);
         // write("src/database/db.json", usersFiltered);
+        (0, db_1.setUsersArray)(usersFiltered);
         return dataToReturn = true;
     }
     return dataToReturn = false;

@@ -11,7 +11,7 @@ Resources:
     Properties:
       Tracing: Active
       CodeUri: UsersGetFunction
-      Handler: app.lambdaHandler
+      Handler: index.lambdaHandler
       Runtime: nodejs14.x
       Timeout: 30
       MemorySize: 128
