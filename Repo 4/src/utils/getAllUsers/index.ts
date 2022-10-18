@@ -11,5 +11,7 @@ import { User } from "../../types";
 // }
 export default async function getAllUsers() {
     const userArr = await userGenerator();
-    return userArr.users as User[];
+    if(userArr) {
+        return userArr.users
+    }
 }

@@ -20,10 +20,13 @@ let userInfo;
 
 async function userGenerator() {
     const users  = await db.get('userInfo')
-    return {
-        users,
-       setUsers: async (newUsers: any) => await db.set('userInfo', newUsers)
+    if(users) {
+        return {
+            users,
+           setUsers: async (newUsers: any) => await db.set('userInfo', newUsers)
+        }
     }
+
 }
 
 
